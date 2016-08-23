@@ -14,7 +14,7 @@ node {
             sh 'aws cloudformation validate-template --template-body file://Jenkins-Demo-PR.json'
 
         stage 'deploy ephemeral stack'
-            sh 'author=$(git --no-pager show -s --format="%an"); aws cloudformation create-stack --stack-name Temp-$(date +%s)-Jenkins-PoC-"${author}" --tags Key=author,Value=$author --template-body file://Jenkins-Demo-PR.json'
+            sh 'author=$(git --no-pager show -s --format="%an"); aws cloudformation create-stack --stack-name Temp-$(date +%s)-Jenkins-PoC-"${author}" --tags Key=author,Value="${author}" --template-body file://Jenkins-Demo-PR.json'
 
     } catch(e) {
         currentBuild.result = 'FAILURE'
