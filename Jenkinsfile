@@ -14,7 +14,7 @@ node {
             sh 'aws cloudformation validate-template --template-body file://Jenkins-Demo-PR.json'
 
         stage 'deploy ephemeral stack'
-            sh 'aws cloudformation create-stack --stack-name Temp-$(date +%s)-Jenkins-PoC --tags Key=AuthorName,Value=${env.CHANGE_AUTHOR} --template-body file://Jenkins-Demo-PR.json'
+            sh 'aws cloudformation create-stack --stack-name Temp-$(date +%s)-Jenkins-PoC --tags Key=AuthorName,Value=${BUILD_NUMBER} --template-body file://Jenkins-Demo-PR.json'
 
     } catch(e) {
         currentBuild.result = 'FAILURE'
