@@ -15,7 +15,8 @@
                                 {"Key": "Name", "Value": {"Fn::Join" : ["-", ["U360", "Jenkins-Demo-App-01"]]}},
                                 {"Key": "Backup", "Value": "No"},
                                 {"Key": "Environment", "Value": "Dev"},
-                                {"Key": "Autostop", "Value": "Yes"}],
+                                {"Key": "Autostop", "Value": "Yes"}
+                                {"Key": "NewKey", "Value": "Testing"}],
                         "SubnetId": "subnet-a10dc3d7"
                 }
         }
