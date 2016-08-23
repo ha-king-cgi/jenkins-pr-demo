@@ -1,7 +1,7 @@
 node {
 
     currentBuild.result = 'SUCCESS'
-
+    env.CHANGE_AUTHOR_DISPLAY_NAME
     try {
 
 	stage 'Print Environment'
@@ -14,7 +14,7 @@ node {
             sh 'aws cloudformation validate-template --template-body file://Jenkins-Demo-PR.json'
 
         stage 'deploy ephemeral stack'
-            sh 'aws cloudformation create-stack --stack-name Temp-$(date +%s)-Jenkins-PoC --tags Key=Destroy,Value=Yes --template-body file://Jenkins-Demo-PR.json'
+            sh 'aws cloudformation create-stack --stack-name Temp-$(date +%s)-Jenkins-PoC --tags Key=AuthorName,Value=$CHANGE_AUTHOR_DISPLAY_NAME --template-body file://Jenkins-Demo-PR.json'
 
     } catch(e) {
         currentBuild.result = 'FAILURE'
