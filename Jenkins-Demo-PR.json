@@ -1,0 +1,23 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Description" : "Launches Jenkins PoC Demo instance stack.",
+  "Resources" : {
+        "JenkinsTest": {
+                "Type": "AWS::EC2::Instance",
+                "Properties" : {
+                        "DisableApiTermination": "false",
+                        "InstanceInitiatedShutdownBehavior": "stop",
+                        "ImageId": "ami-0cc13c61",
+                        "InstanceType": "t2.micro",
+                        "Monitoring": "false",
+                        "KeyName" : "key-cgi-test",
+                        "Tags": [
+                                {"Key": "Name", "Value": {"Fn::Join" : ["-", ["U360", "Jenkins-Demo-App-01"]]}},
+                                {"Key": "Backup", "Value": "No"},
+                                {"Key": "Environment", "Value": "Dev"},
+                                {"Key": "Autostop", "Value": "Yes"}],
+                        "SubnetId": "subnet-a10dc3d7"
+                }
+        }
+  }
+}
