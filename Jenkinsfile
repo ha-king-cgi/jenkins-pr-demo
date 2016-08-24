@@ -10,10 +10,9 @@ node {
 
 
     switch(env.BRANCH_NAME) {
-      case ~/(master|development|staging|production)/:
-        def build_environment = Matcher.lastMatcher[0][1]
-        stage "deploy to ${build_environment}"
-        println "Deploy to ${build_environment}.."
+      case ['master', 'development', 'staging', 'production']:
+        stage "deploy to ${env.BRANCH_NAME}"
+        println "Deploy to ${env.BRANCH_NAME}.."
       
       default:
         stage 'create ephemeral environment'
