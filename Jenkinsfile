@@ -16,8 +16,8 @@ node {
       
       default:
         stage 'create ephemeral environment'
-        println 'Deploy to development'
-        def author = sh('git --no-pager show -s --format="%an"').replaceAll("\\s","")
+        println 'Deploying ephemeral stack'
+        def author = sh('git --no-pager show -s --format="%an"')
         def stack_name = "Jenkins-${unix_time}-${author}"
         def tags = "Key=author,Value=${author}"
         def file = 'Jenkins-Demo-PR.json'
