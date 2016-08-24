@@ -6,7 +6,7 @@ node {
     checkout scm
 
     stage 'validate template'
-    sh 'aws cloudformation validate-template --template-body file://Jenkins-Demo-PR.json
+    sh 'aws cloudformation validate-template --template-body file://Jenkins-Demo-PR.json'
 
 
     switch(env.BRANCH_NAME) {
