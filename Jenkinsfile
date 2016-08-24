@@ -4,7 +4,7 @@ node {
     
     try {
 
-	stage 'Print Environment'
+	stage 'Print Environment Vars'
             sh 'env'
 
         stage 'checkout'
