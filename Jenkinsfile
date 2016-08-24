@@ -20,7 +20,7 @@ node {
         def author = sh (
             script: 'git --no-pager show -s --format="%an"',
             returnStdout: true
-        )
+        ).replaceAll("\\s","")
         def build_time = sh (
             script: 'date +%s',
             returnStdout: true
