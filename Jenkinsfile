@@ -22,7 +22,7 @@ node {
             returnStdout: true
         ).trim()
         def build_time = sh (
-            script: 'date +%s'
+            script: 'date +%s',
             returnStdout: true
         ).trim()
         def stack_name = "Jenkins-${build_time}-${author}"
