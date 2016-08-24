@@ -25,10 +25,10 @@ node {
             script: 'date +%s',
             returnStdout: true
         )
-        println "This is author: #{author}"
-        println "This is build_time: #{build_time}"
-        def stack_name = "Jenkins-${vars.build_time}-${vars.author}"
-        def tags = "Key=author,Value=${vars.author}"
+        println "This is author: ${author}"
+        println "This is build_time: ${build_time}"
+        def stack_name = "Jenkins-${build_time}-${author}"
+        def tags = "Key=author,Value=${author}"
         def file = 'Jenkins-Demo-PR.json'
         def command = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
         println command
