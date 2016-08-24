@@ -18,7 +18,7 @@ node {
         stage 'create ephemeral environment'
         println 'Deploying ephemeral stack'
         def author = sh (
-            script: 'git --no-pager show -s --format=\'%ae\'',
+            script: 'git --no-pager show -s --format="%an"',
             returnStdout: true
         ).trim()
         def build_time = sh (
