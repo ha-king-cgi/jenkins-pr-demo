@@ -17,16 +17,16 @@ node {
       default:
         stage 'create ephemeral environment'
         println 'Deploying ephemeral stack'
-        def author = sh (
+        vars.author = sh (
             script: 'git --no-pager show -s --format="%an"',
             returnStdout: true
         )
-        def build_time = sh (
+        vars.build_time = sh (
             script: 'date +%s',
             returnStdout: true
         )
-        def stack_name = "Jenkins-${build_time}-${author}"
-        def tags = "Key=author,Value=${author}"
+        def stack_name = "Jenkins-${vars.build_time}-${vars.author}"
+        def tags = "Key=author,Value=${vars.author}"
         def file = 'Jenkins-Demo-PR.json'
         def command = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
         println command
