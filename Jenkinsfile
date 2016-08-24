@@ -20,11 +20,11 @@ node {
         def author = sh (
             script: 'git --no-pager show -s --format="%an"',
             returnStdout: true
-        ).trim()
+        )
         def build_time = sh (
             script: 'date +%s',
             returnStdout: true
-        ).trim()
+        )
         def stack_name = "Jenkins-${build_time}-${author}"
         def tags = "Key=author,Value=${author}"
         def file = 'Jenkins-Demo-PR.json'
