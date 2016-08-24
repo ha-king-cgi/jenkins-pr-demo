@@ -17,14 +17,16 @@ node {
       default:
         stage 'create ephemeral environment'
         println 'Deploying ephemeral stack'
-        vars.author = sh (
+        def author = sh (
             script: 'git --no-pager show -s --format="%an"',
             returnStdout: true
         )
-        vars.build_time = sh (
+        def build_time = sh (
             script: 'date +%s',
             returnStdout: true
         )
+        println "This is author: #{author}"
+        println "This is build_time: #{build_time}"
         def stack_name = "Jenkins-${vars.build_time}-${vars.author}"
         def tags = "Key=author,Value=${vars.author}"
         def file = 'Jenkins-Demo-PR.json'
