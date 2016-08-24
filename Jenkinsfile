@@ -18,6 +18,7 @@ node {
         stage 'create ephemeral environment'
         println 'Deploying ephemeral stack'
         def author = sh('git --no-pager show -s --format="%an"')
+        def unix_time = System.currentTimeMillis
         def stack_name = "Jenkins-${unix_time}-${author}"
         def tags = "Key=author,Value=${author}"
         def file = 'Jenkins-Demo-PR.json'
