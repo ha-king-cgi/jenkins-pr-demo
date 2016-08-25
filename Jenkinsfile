@@ -2,7 +2,7 @@ node {
   try {
     stage 'checkout'
       checkout scm
-
+   
     stage 'validate template'
       sh 'aws cloudformation validate-template --template-body file://Jenkins-Demo-PR.json'
 
@@ -40,7 +40,7 @@ node {
             def tags = "Key=author,Value=${author}"
             def file = 'Jenkins-Demo-PR.json'
             def create_new_stack = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
-            sh create_new_stack
+            println create_new_stack
         }
     }
   } catch(e) {
