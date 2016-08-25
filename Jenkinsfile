@@ -12,7 +12,7 @@ node {
         stage "Deploy to ${env.BRANCH_NAME}"
           println "Deploy to ${env.BRANCH_NAME}.."
 
-      case =~ /PR-*/:
+      case ~/PR-*/:
         def old_environments = []
         stage 'Find Old Stacks'
           println 'TODO: Identify if old environments exist for this branch'
