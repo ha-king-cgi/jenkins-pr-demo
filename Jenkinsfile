@@ -2,7 +2,7 @@ node {
   try {
     stage 'checkout'
       checkout scm
-      println "Bulding branch: #{env.BRANCH_NAME}"
+      println "Bulding branch: ${env.BRANCH_NAME}"
    
     stage 'validate template'
       sh 'aws cloudformation validate-template --template-body file://Jenkins-Demo-PR.json'
