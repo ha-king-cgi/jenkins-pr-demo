@@ -47,19 +47,22 @@ node {
 
           def stack_name = "Jenkins-${env.BRANCH_NAME}-${build_time}-${author}"
           def tags = "Key=author,Value=${author}"
-          def file = 'Jenkins-Demo-PR.json'
+          def file = '/Jenkins-Demo-PR.json'
           def create_new_stack = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
           println create_new_stack
-
+          
+          currentBuild.result = 'SUCCESS'
+          
       default:
         stage "Abort build if not PR"
           println "Not a PR"
 		  println "Current Branch: ${env.BRANCH_NAME}"
+		  currentBuild.result = 'FAILURE'
 		  
-      stage "Notify bitbucket"
-        println "Notify bitbucket with build status"
-        println "RESULT: ${currentBuild.result}"
-        bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
+	  stage "Notify bitbucket"
+	    println "Notify bitbucket with build status"
+	    println "RESULT: ${currentBuild.result}"
+	    bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
 
     }
 
