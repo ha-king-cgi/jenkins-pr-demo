@@ -1,8 +1,9 @@
 node {
   try {
+  
+    bitbucketStatusNotify ( buildState: 'INPROGRESS' )
     
     stage 'checkout'
-      bitbucketStatusNotify ( buildState: 'INPROGRESS' )
       checkout scm
       println "Bulding branch: ${env.BRANCH_NAME}"
    
@@ -52,6 +53,7 @@ node {
 
         stage "Notify bitbucket"
           println "Notify bitbucket with build status"
+          
           bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
     }
   } catch(e) {
