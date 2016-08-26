@@ -21,12 +21,15 @@ node {
         stage 'Find Old Stacks'
           println 'TODO: Identify if old environments exist for this branch'
           println "Current Branch: ${env.BRANCH_NAME}"
-          old_environments[0] = "${env.BRANCH_NAME}"
-          old_environments.each { println "Environment: ${it}" }
+          //old_environments[0] = env.BRANCH_NAME
+          //old_environments.each { println "Environment: ${it}" }
 
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
             println 'TODO: Tearing down old environments'
+            
+            //def stack_name = old_environments[0]
+            //sh 'aws cloudformation delete-stack --stack-name ${stack_name} '
         }
         
         stage 'Create Ephemeral Environment'
