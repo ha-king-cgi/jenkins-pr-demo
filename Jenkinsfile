@@ -17,6 +17,7 @@ node {
         def old_environments = []
         stage 'Find Old Stacks'
           println 'TODO: Identify if old environments exist for this branch'
+          println "Current Branch: ${env.BRANCH_NAME}"
 
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
