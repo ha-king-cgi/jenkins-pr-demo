@@ -1,6 +1,8 @@
 node {
   try {
+    
     stage 'checkout'
+      bitbucketStatusNotify ( buildState: 'INPROGRESS' )
       checkout scm
       println "Bulding branch: ${env.BRANCH_NAME}"
    
@@ -43,12 +45,14 @@ node {
           def create_new_stack = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
           println create_new_stack
 
-          default:
-            stage "Abort build if not PR"
-              println "Not a PR"
+      default:
+        stage "Abort build if not PR"
+          println "Not a PR"
+		  println "Current Branch: ${env.BRANCH_NAME}"
 
         stage "Notify bitbucket"
           println "Notify bitbucket with build status"
+          bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
     }
   } catch(e) {
       println 'Build failed...'
