@@ -60,7 +60,7 @@ node {
     stage "Notify bitbucket"
 		println "Notify bitbucket with build status"
 		  
-		bitbucketStatusNotify ( currentBuild.result )
+		bitbucketStatusNotify ( buildState: currentBuild.result )
 
   } catch(e) {
       println 'Build failed...'
