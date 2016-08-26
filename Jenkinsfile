@@ -56,11 +56,12 @@ node {
           println "Not a PR"
 		  println "Current Branch: ${env.BRANCH_NAME}"
 
-        stage "Notify bitbucket"
-          println "Notify bitbucket with build status"
-          
-          bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
     }
+    stage "Notify bitbucket"
+		println "Notify bitbucket with build status"
+		  
+		bitbucketStatusNotify ( currentBuild.result )
+
   } catch(e) {
       println 'Build failed...'
       throw(e)
