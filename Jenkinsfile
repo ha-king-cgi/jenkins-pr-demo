@@ -53,9 +53,10 @@ node {
           //def tags = "Key=author,Value=${author}"
           //def file = 'Jenkins-Demo-PR.json'
           //def create_new_stack = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
+          
           //sh 'aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}'
           
-          sh 'routine.sh'
+          sh '/home/centos/jenkins-pr-demo/routine.sh'
           
           currentBuild.result = 'SUCCESS'
           
