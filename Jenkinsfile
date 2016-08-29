@@ -21,7 +21,11 @@ node {
         stage 'Find Old Stacks'
           println 'TODO: Identify if old environments exist for this branch'
           println "Current Branch: ${env.BRANCH_NAME}"
-          def old_stacks = 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2'
+          
+          def old_stacks = sh (
+            script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2'
+            returnStdout: true
+          )
           
           println old_stacks
           
@@ -50,8 +54,7 @@ node {
           def stack_name = "Jenkins-${env.BRANCH_NAME}-${build_time}-${author}"
           def tags = "Key=author,Value=${author}"
           def file = 'Jenkins-Demo-PR.json'
-          def create_new_stack = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
-          sh create_new_stack
+          sh "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
           
           currentBuild.result = 'SUCCESS'
           
