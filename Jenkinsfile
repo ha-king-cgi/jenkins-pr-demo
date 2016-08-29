@@ -21,12 +21,8 @@ node {
         stage 'Find Old Stacks'
           println 'TODO: Identify if old environments exist for this branch'
           println "Current Branch: ${env.BRANCH_NAME}"
-          def old_stacks = sh (
-            script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2',
-            returnStdout: true
-          )
-          println old_stacks
           
+          sh '/home/centos/jenkins-pr-demo/stack_destroyer.sh'
 
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
