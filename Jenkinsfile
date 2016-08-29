@@ -55,13 +55,7 @@ node {
           def stack_name = "Jenkins-${env.BRANCH_NAME}-${build_time}-${author}"
           def tags = "Key=author,Value=${author}"
           def file = 'Jenkins-Demo-PR.json'
-          
-          def create_new_stack = sh (
-            script: 'aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}',
-            returnStdout: true
-          )
-          
-          println create_new_stack
+          def create_new_stack = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
           sh '${create_new_stack}'
           
           currentBuild.result = 'SUCCESS'
