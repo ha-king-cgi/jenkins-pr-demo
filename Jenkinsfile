@@ -26,7 +26,6 @@ node {
             returnStdout: true
           )
           println old_stacks
-          sh old_stacks
           
 
         if (!old_environments?.empty) {
