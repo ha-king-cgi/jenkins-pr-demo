@@ -23,7 +23,7 @@ node {
           println "Current Branch: ${env.BRANCH_NAME}"
           
           def old_stacks = sh (
-            script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2'
+            script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2',
             returnStdout: true
           )
           
