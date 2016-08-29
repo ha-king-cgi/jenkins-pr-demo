@@ -22,7 +22,7 @@ node {
           println 'TODO: Identify if old environments exist for this branch'
           println "Current Branch: ${env.BRANCH_NAME}"
           def old_stacks = sh (
-	          script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2 | sed -e "s/\"//g;s/\,//g;s/\ //g"',
+	          script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2',
               returnStdout: true
           )
           println old_stacks
