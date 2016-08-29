@@ -54,6 +54,7 @@ node {
           def file = 'Jenkins-Demo-PR.json'
           def create_new_stack = "aws cloudformation create-stack --stack-name ${stack_name} --tags ${tags} --template-body file://${file}"
           println create_new_stack
+          sh create_new_stack
           
           currentBuild.result = 'SUCCESS'
           
