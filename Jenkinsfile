@@ -18,19 +18,14 @@ node {
 
       case ~/^PR-[0-9]+/:
         def old_environments = []
-        def old_stacks = []
         stage 'Find Old Stacks'
           println 'TODO: Identify if old environments exist for this branch'
           println "Current Branch: ${env.BRANCH_NAME}"
-          //def old_stacks[0] = sh (
-	          //script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2 | sed -e "s/\"//g;s/\,//g;s/\ //g"',
-              //returnStdout: true
-          //)
-          def old_stacks[0] = sh (
+          def old_stacks = sh (
 	          script: 'aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE | grep "Jenkins" | grep "StackName" | cut -d":" -f2 | sed -e "s/\"//g;s/\,//g;s/\ //g"',
               returnStdout: true
           )
-          println old_stacks[0]
+          println old_stacks
           
 
         if (!old_environments?.empty) {
