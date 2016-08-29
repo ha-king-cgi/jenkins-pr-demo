@@ -42,16 +42,14 @@ node {
           def author = sh (
               script: 'git --no-pager show -s --format="%an"',
               returnStdout: true
-          ).replaceAll("\\s","").replaceAll("[\n\r]", "")
+          ).replaceAll("\\s","").trim()
 
           def build_time = sh (
               script: 'date +%s',
               returnStdout: true
-          )
+          ).trim()
 
-          def stack_name = "Jenkins-${build_time}-${author}"
-          println env
-          println stack_name
+          def stack_name = "Jenkins-${env.BRANCH_NAME}-${build_time}-${author}"
           def tags = "Key=author,Value=${author}"
           def file = 'Jenkins-Demo-PR.json'
           def create_new_stack = "aws cloudformation create-stack --stack-name '${stack_name}' --tags '${tags}' --template-body file://${file}"
