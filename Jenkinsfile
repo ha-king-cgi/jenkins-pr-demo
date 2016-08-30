@@ -83,7 +83,7 @@ node {
 	    println "RESULT: ${currentBuild.result}"
 	    
 	    def buildResult
-	    switch(currentBuild.result){
+	    switch(${currentBuild.result}){
 	      case ['SUCCESS']:
 	        buildResult = bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
 	        break
@@ -94,7 +94,8 @@ node {
 	        buildResult = bitbucketStatusNotify ( buildState: 'UNSTABLE' )
 	        break
 	    }
-	    println buildResult
+	    println ${currentBuild.result}
+	    println ${buildResult}
 
   } catch(e) {
       println 'Build failed...'
