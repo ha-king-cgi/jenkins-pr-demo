@@ -26,7 +26,7 @@ node {
 
           def stacksList = stacks.split('-')
 
-          def matchingStacks = stacksList.retainAll { it =~ /Jenkins-[A-Z]*-[0-9]*-[0-9]*-\w*/ }
+          def matchingStacks = stacksList.findAll { it =~ /Jenkins-[A-Z]*-[0-9]*-[0-9]*-\w*/ }
 
           println "Matching Stacks: ${matchingStacks}"
 
