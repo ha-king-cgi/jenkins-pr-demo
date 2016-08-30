@@ -36,7 +36,6 @@ node {
           String delims = "[	]";
           String[] result = stacksList.split(delims);
           
-          /*
           for (int x=0; x<result.length; x++) {
 		    def temp = result[x].substring(0,10)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
@@ -49,7 +48,7 @@ node {
                   currentBuild.result = 'SUCCESS'
 		    }
           }
-          */
+          
           currentBuild.result = 'SUCCESS'
         
         stage 'Create Ephemeral Environment'
