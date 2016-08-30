@@ -38,21 +38,21 @@ node {
 
           println stacksList
           
-          for (int x=0; x<result.length; x++) {
+          //for (int x=0; x<result.length; x++) {
           
-		    println(result[x])
+		    //println(result[x])
 		    
-		    def temp = result[x].substring(0,8)
-		    println temp
+		    //def temp = result[x].substring(0,8)
+		    //println temp
 		    
-		    def destroy_stack = "aws cloudformation delete-stack --stack-name '${result[x]}'"
+		    //def destroy_stack = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 		    
-		    if ( "${temp}"=="Jenkins" ) {
-		        stage 'Destroy Old Stacks'
-		          println destroy_stack
-		    }
+		    //if ( "${temp}"=="Jenkins" ) {
+		    //    stage 'Destroy Old Stacks'
+		    //      //println destroy_stack
+		    //}
           
-          }
+          //}
           
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
 
