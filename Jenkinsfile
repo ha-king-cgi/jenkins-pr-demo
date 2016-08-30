@@ -42,15 +42,13 @@ node {
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 		    switch(result[x]) {
 			    case ~/^PR-[0-9]+/:
-				    if ( "${temp}"=="Jen" ) {
-				        stage 'Scan All Stacks'
-				          println(result[x])
-				          println destroy_stacks
-				          sh destroy_stacks
-				          println "DESTROYED_STACK: '${result[x]}'"
-				    }
-			     default:
-				     println "FIND OLD STACKS: DEFAULT"
+		          stage 'Scan All Stacks'
+		            println(result[x])
+		            println destroy_stacks
+		            sh destroy_stacks
+		            println "DESTROYED_STACK: '${result[x]}'"
+			      default:
+				    println "FIND OLD STACKS: DEFAULT"
 		    }
           }
           println "STACKS DESTRUCTION COMPLETE"
