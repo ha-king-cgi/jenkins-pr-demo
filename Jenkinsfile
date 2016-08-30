@@ -38,7 +38,7 @@ node {
           println result[0]
           
           for (int x=0; x<result.length; x++) {
-		    if (result[x].length>9) {
+		    if (result[x].substring(0,10)) {
 			    def temp = result[x].substring(0,10)		    
 			    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 			    if ( "${temp}"=="Jenkins-PR" ) {
