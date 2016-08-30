@@ -51,7 +51,7 @@ node {
 		        stage 'Destroy Old Stacks'
 		          println(result[x])
 		          println destroy_stacks
-		          sh destroy _stacks
+		          sh destroy_stacks
 		    }
           
           }
