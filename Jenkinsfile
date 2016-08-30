@@ -20,11 +20,11 @@ node {
         def old_environments = []
         stage 'Find Old Stacks'
           def stacks = sh (
-           script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackId'",
+           script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
            returnStdout: true
           ).trim()
 
-          def stacksList = stacks.split('-')
+          def stacksList = stacks.split(' ')
 
           println stacksList
 
