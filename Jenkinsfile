@@ -90,9 +90,9 @@ node {
 	    println "RESULT: ${currentBuild.result}"
 	    
 	    switch(currentBuild.result){
-	      case [SUCCESS]:
+	      case ['SUCCESS']:
 	        bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
-	      case [FAILURE]:
+	      case ['FAILURE']:
 	        bitbucketStatusNotify ( buildState: 'FAILURE' )
 	      default:
 	        bitbucketStatusNotify ( buildState: 'UNSTABLE' )
