@@ -34,9 +34,9 @@ node {
            returnStdout: true
           ).trim()
 
-          def stacksList = stacks.split(' ')
+          //def stacksList = stacks.split(' ')
 
-          println stacksList
+          println stacks
 
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
 
