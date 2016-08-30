@@ -40,6 +40,8 @@ node {
           
           for (int x=0; x<result.length; x++) {
 		    println(result[x]);
+		    def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
+		    println "Matching Stacks: ${matchingStacks}"
 	      }
 
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
