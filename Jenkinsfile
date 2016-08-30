@@ -52,13 +52,13 @@ node {
 		          println(result[x])
 		          println destroy_stacks
 		          sh destroy_stacks
+		          
+		          println "Destroyed Stack: '${result[x]}'"
 		    }
           
           }
           
-          //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
-
-          //println "Matching Stacks: ${matchingStacks}"
+          currentBuild.result = 'SUCCESS'
 
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
