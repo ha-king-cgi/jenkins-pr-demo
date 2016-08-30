@@ -28,7 +28,7 @@ node {
 
           println stacksList
 
-          def matchingStacks = stacksList
+          def matchingStacks = stacksList.flatten()
 
           println "Matching Stacks: ${matchingStacks}"
 
