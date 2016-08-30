@@ -36,7 +36,7 @@ node {
 
           String stacksList = stacks
           String delims = "[    ]";
-          String[] tokens = employee.split(delims);
+          String[] tokens = stacksList.split(delims);
 
           println stacksList
 
