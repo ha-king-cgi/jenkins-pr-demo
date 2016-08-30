@@ -46,6 +46,8 @@ node {
 		        stage 'Destroy Old Stacks'
 		          sh 'aws cloudformation delete-stack --stack-name result[x]'
           
+          }
+          
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
 
           //println "Matching Stacks: ${matchingStacks}"
