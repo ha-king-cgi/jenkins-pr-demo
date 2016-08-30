@@ -38,16 +38,19 @@ node {
           println result[0]
           
           for (int x=0; x<result.length; x++) {
-		    if (result[x].substring(0,10)) {
-			    def temp = result[x].substring(0,10)		    
-			    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
-			    if ( "${temp}"=="Jenkins-PR" ) {
-			        stage 'Scan All Stacks'
-			          println(result[x])
-			          println destroy_stacks
-			          sh destroy_stacks
-			          println "DESTROYED_STACK: '${result[x]}'"
-			    }
+		    def temp = result[x].substring(0,2)		    
+		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
+		    switch(result[x]) {
+			    case ~/^PR-[0-9]+/:
+				    if ( "${temp}"=="Jen" ) {
+				        stage 'Scan All Stacks'
+				          println(result[x])
+				          println destroy_stacks
+				          sh destroy_stacks
+				          println "DESTROYED_STACK: '${result[x]}'"
+				    }
+			     default:
+				     println "FIND OLD STACKS: DEFAULT"
 		    }
           }
           println "STACKS DESTRUCTION COMPLETE"
