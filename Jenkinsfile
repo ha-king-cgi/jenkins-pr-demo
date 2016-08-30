@@ -39,7 +39,7 @@ node {
           println stacksList
           
           for (int x=0; x<result.length; x++) {
-		    System.out.println(result[x]);
+		    println(result[x]);
 	      }
 
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
