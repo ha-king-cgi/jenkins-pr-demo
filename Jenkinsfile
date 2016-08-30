@@ -1,3 +1,13 @@
+import com.cloudbees.groovy.cps.NonCPS
+
+@NonCPS
+
+def findMatching(List arr, String regex) {
+
+    arr.findAll(it =~ /${regex}/)
+
+}
+
 node {
   try {
   
@@ -28,7 +38,7 @@ node {
 
           println stacksList
 
-          def matchingStacks = stacksList.findAll { it =~ /Jenkins-[A-Z]*-[0-9]*-[0-9]*-\w*/ }
+          def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9    ]*-\w*")
 
           println "Matching Stacks: ${matchingStacks}"
 
