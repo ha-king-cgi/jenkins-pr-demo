@@ -46,6 +46,7 @@ node {
 		          println "DESTROYED_STACK: '${result[x]}'"
 		    }
           }
+          println "STACKS DESTRUCTION COMPLETE"
                   
         stage 'Create Ephemeral Environment'
           println 'Deploy Ephemeral Stack'
@@ -72,11 +73,12 @@ node {
           
       default:
         stage "Abort build if not PR"
-          println "Not a PR"
-		  println "Current Branch: ${env.BRANCH_NAME}"
+          println "NOT A PULL REQUEST"
+		  println "CURRENT_BRANCH: ${env.BRANCH_NAME}"
 		  currentBuild.result = 'FAILURE'
-		  
-	stage "Notify bitbucket"
+
+    }
+    stage 'Notify bitbucket'
 	    println "Notify bitbucket with build status"
 	    println "RESULT: ${currentBuild.result}"
 	    
@@ -88,8 +90,6 @@ node {
 	      default:
 	        bitbucketStatusNotify ( buildState: 'UNSTABLE' )
 	    }
-
-    }
 
   } catch(e) {
       println 'Build failed...'
