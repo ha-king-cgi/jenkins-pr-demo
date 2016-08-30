@@ -76,7 +76,7 @@ node {
 		  println "Current Branch: ${env.BRANCH_NAME}"
 		  currentBuild.result = 'FAILURE'
 		  
-	  stage "Notify bitbucket"
+	stage "Notify bitbucket"
 	    println "Notify bitbucket with build status"
 	    println "RESULT: ${currentBuild.result}"
 	    
