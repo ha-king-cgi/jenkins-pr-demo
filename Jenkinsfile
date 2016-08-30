@@ -47,7 +47,7 @@ node {
 		        stage 'Destroy Old Stacks'
 		          sh 'aws cloudformation delete-stack --stack-name result[x]'
 		    
-		    println "Matching Stacks: ${matchingStacks}"
+		    //println "Matching Stacks: ${matchingStacks}"
 		    
 	      }
 
