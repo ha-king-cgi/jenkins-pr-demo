@@ -34,7 +34,9 @@ node {
            returnStdout: true
           ).trim()
 
-          def stacksList = stacks.split()
+          String stacksList = stacks
+          String delims = "[    ]";
+          String[] tokens = employee.split(delims);
 
           println stacksList
 
