@@ -35,14 +35,13 @@ node {
           ).trim()
 
           String stacksList = stacks
-          String delims = "[    ]";
+          String delims = "[	]";
           String[] tokens = stacksList.split(delims);
 
           println stacksList
           
-          stacksList.eachWithIndex { item, index ->
-		    println item
-		    println index
+          [ 'Daniel', 'Dan', 'Jerry' ].eachWithIndex { name, index, indexPlusOne = index + 1 ->
+		    println "Name $name has position $indexPlusOne"
 		  }
 
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
