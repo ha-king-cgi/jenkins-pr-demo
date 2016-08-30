@@ -38,7 +38,7 @@ node {
           println result[0].substring(0,2)
           
           for (int x=0; x<result.length; x++) {
-		    def temp = result[x].substring(0,2)		    
+		    def temp = result[x].substring(0,3)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 		    if ("$temp"=="Jen") {
 	          stage 'Scan All Stacks'
@@ -48,7 +48,7 @@ node {
 	            println "DESTROYED_STACK: '${result[x]}'"
 		    }
           }
-          println "STACKS DESTRUCTION COMPLETE"
+          println "STACK SCAN COMPLETE"
                   
         stage 'Create Ephemeral Environment'
           println 'Deploy Ephemeral Stack'
