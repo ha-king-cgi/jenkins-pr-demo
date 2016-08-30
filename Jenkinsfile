@@ -38,12 +38,12 @@ node {
 
           //println stacksList
           
-          for (int x=0; x<result.length; x++) {
+          //for (int x=0; x<result.length; x++) {
           		    
-		    def temp = result[x].substring(0,10)
+		    //def temp = result[x].substring(0,10)
 		    //println temp
 		    
-		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
+		    //def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 		    
 		    //if ( "${temp}"=="Jenkins-PR" ) {
 		        //stage 'Destroy Old Stacks'
@@ -59,7 +59,7 @@ node {
 		      //println "NO_STACKS_DESTROYED"
 		      //currentBuild.result = 'FAILURE'
 		    //}
-          }
+          //}
          
 
         if (!old_environments?.empty) {
