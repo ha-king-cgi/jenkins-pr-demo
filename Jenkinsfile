@@ -35,11 +35,13 @@ node {
           String delims = "[	]";
           String[] result = stacksList.split(delims);
           
+          println result[0]
+          
           for (int x=0; x<result.length; x++) {
 		    def temp = result[x].substring(0,10)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 		    if ( "${temp}"=="Jenkins-PR" ) {
-		        stage 'Destroy Old Stacks'
+		        stage 'Scan All Stacks'
 		          println(result[x])
 		          println destroy_stacks
 		          sh destroy_stacks
