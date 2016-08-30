@@ -34,9 +34,7 @@ node {
           String stacksList = stacks
           String delims = "[	]";
           String[] result = stacksList.split(delims);
-          
-          println result[0].substring(0,2)
-          
+                    
           for (int x=0; x<result.length; x++) {
 		    def temp = result[x].substring(0,3)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
@@ -84,17 +82,19 @@ node {
 	    println "Notify bitbucket with build status"
 	    println "RESULT: ${currentBuild.result}"
 	    
-	    switch(${currentBuild.result}){
+	    def buildResult
+	    switch(currentBuild.result){
 	      case ['SUCCESS']:
-	        bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
+	        buildResult = bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
 	        break
 	      case ['FAILURE']:
-	        bitbucketStatusNotify ( buildState: 'FAILURE' )
+	        buildResult = bitbucketStatusNotify ( buildState: 'FAILURE' )
 	        break
 	      default:
-	        bitbucketStatusNotify ( buildState: 'UNSTABLE' )
+	        buildResult = bitbucketStatusNotify ( buildState: 'UNSTABLE' )
 	        break
 	    }
+	    println buildResult
 
   } catch(e) {
       println 'Build failed...'
