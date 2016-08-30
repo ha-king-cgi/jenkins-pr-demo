@@ -47,10 +47,10 @@ node {
 		        stage 'Destroy Old Stacks'
 		          sh 'aws cloudformation delete-stack --stack-name result[x]'
 		    
-		    default:
-		      stage 'PR switch default'
-		      println "Default from switch stmt"
-		    //println "Matching Stacks: ${matchingStacks}"
+		      default:
+		        stage 'PR switch default'
+		        println "Default from switch stmt"
+		      //println "Matching Stacks: ${matchingStacks}"
 		    
 	      }
 
