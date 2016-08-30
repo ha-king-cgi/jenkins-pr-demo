@@ -38,9 +38,9 @@ node {
 
           println stacksList
 
-          def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
+          //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
 
-          println "Matching Stacks: ${matchingStacks}"
+          //println "Matching Stacks: ${matchingStacks}"
 
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
