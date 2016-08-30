@@ -41,9 +41,8 @@ node {
           for (int x=0; x<result.length; x++) {
           
 		    println(result[x]);
-		    
-		    switch(result[x]) {
-		      case  ~/^Jenkins-PR-[0-9]+/:
+		    def temp = result[x].substring(0,8)
+		    if ( temp="Jenkins" )
 		        stage 'Destroy Old Stacks'
 		          sh 'aws cloudformation delete-stack --stack-name result[x]'
 		    
@@ -51,9 +50,7 @@ node {
 		        stage 'PR switch default'
 		        println "Default from switch stmt"
 		      //println "Matching Stacks: ${matchingStacks}"
-		    
-	      }
-
+          
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
 
           //println "Matching Stacks: ${matchingStacks}"
