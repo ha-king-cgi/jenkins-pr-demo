@@ -39,7 +39,11 @@ node {
           String[] tokens = stacksList.split(delims);
 
           println stacksList
-          println tokens
+          
+          stacksList.eachWithIndex { item, index ->
+		    println item
+		    println index
+		  }
 
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
 
