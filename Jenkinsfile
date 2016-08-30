@@ -1,8 +1,10 @@
-//import com.cloudbees.groovy.cps.NonCPS
+#!/usr/bin/env groovy
 
-//@NonCPS
+import com.cloudbees.groovy.cps.NonCPS
 
-//def findMatching(List arr, String regex) { //arr.findAll(it =~ /${regex}/) }
+@NonCPS
+
+def findMatching(List arr, String regex) { arr.findAll(it =~ /${regex}/) }
 
 node {
   try {
@@ -32,13 +34,13 @@ node {
 
           String stacksList = stacks
           String delims = "[	]";
-          String[] tokens = stacksList.split(delims);
+          String[] result = stacksList.split(delims);
 
           println stacksList
           
-          [ 'Daniel', 'Dan', 'Jerry' ].eachWithIndex { name, index, indexPlusOne = index + 1 ->
-		    println "Name $name has position $indexPlusOne"
-		  }
+          for (int x=0; x<result.length; x++) {
+		    System.out.println(result[x]);
+	      }
 
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
 
