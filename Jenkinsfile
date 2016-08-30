@@ -25,7 +25,6 @@ node {
           println "Deploy to ${env.BRANCH_NAME}.."
 
       case ~/^PR-[0-9]+/:
-        def old_environments = []
         stage 'Find Old Stacks'
           def stacks = sh (
            script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
@@ -45,12 +44,9 @@ node {
 		          println destroy_stacks
 		          sh destroy_stacks
 		          println "DESTROYED_STACK: '${result[x]}'"
-                  currentBuild.result = 'SUCCESS'
 		    }
           }
-          
-          currentBuild.result = 'SUCCESS'
-        
+                  
         stage 'Create Ephemeral Environment'
           println 'Deploy Ephemeral Stack'
 
@@ -85,9 +81,9 @@ node {
 	    println "RESULT: ${currentBuild.result}"
 	    
 	    switch(currentBuild.result){
-	      case ['SUCCESS']:
+	      case [SUCCESS]:
 	        bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
-	      case ['FAILURE']:
+	      case [FAILURE]:
 	        bitbucketStatusNotify ( buildState: 'FAILURE' )
 	      default:
 	        bitbucketStatusNotify ( buildState: 'UNSTABLE' )
