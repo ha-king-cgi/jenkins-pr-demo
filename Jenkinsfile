@@ -20,11 +20,15 @@ node {
         def old_environments = []
         stage 'Find Old Stacks'
           def stacks = sh (
-           script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackId' | grep 'Jenkins-[A-Z]*-[0-9]*-[0-9]*'",
+           script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackId'",
            returnStdout: true
           ).trim()
 
-          println "Matching Stacks: ${stacks}"
+          def stacksList = stacks.split('-')
+
+          def matchingStacks = stacksList.retainAll { it =~ /Jenkins-[A-Z]*-[0-9]*-[0-9]*-\w*/ }
+
+          println "Matching Stacks: ${matchingStacks}"
 
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
