@@ -57,18 +57,9 @@ node {
                 
 		    } else {
 		      println "NO_STACKS_DESTROYED"
-		      currentBuild.result = 'FAILURE'
 		    }
           }
-         
-
-        if (!old_environments?.empty) {
-          stage 'Destroy Old Stacks'
-            println 'TODO: Tearing down old environments'
-            
-            //def stack_name = old_environments[0]
-            //sh 'aws cloudformation delete-stack --stack-name ${stack_name} '
-        }
+          currentBuild.result = 'SUCCESS'
         
         stage 'Create Ephemeral Environment'
           println 'Deploy Ephemeral Stack'
