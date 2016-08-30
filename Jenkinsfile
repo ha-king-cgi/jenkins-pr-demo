@@ -39,9 +39,16 @@ node {
           println stacksList
           
           for (int x=0; x<result.length; x++) {
+          
 		    println(result[x]);
-		    def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
+		    
+		    switch(result[x]) {
+		      case  ~/^Jenkins-PR-[0-9]+/:
+		        stage 'Destroy Old Stacks'
+		          sh 'aws cloudformation delete-stack --stack-name result[x]'
+		    
 		    println "Matching Stacks: ${matchingStacks}"
+		    
 	      }
 
           //def matchingStacks = findMatching(stacksList, "Jenkins-[A-Z]*-[0-9]*-[0-9]*")
