@@ -53,12 +53,16 @@ node {
 		          println destroy_stacks
 		          sh destroy_stacks
 		          
-		          println "Destroyed Stack: '${result[x]}'"
+		          println "DESTROYED_STACK: '${result[x]}'"
+		          
+                currentBuild.result = 'SUCCESS'
+                
+		    } else {
+		      println "NO_STACKS_DESTROYED"
+		      currentBuild.result = 'FAILURE'
 		    }
-          
           }
-          
-          currentBuild.result = 'SUCCESS'
+         
 
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
