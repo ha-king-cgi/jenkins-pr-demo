@@ -1,12 +1,8 @@
-import com.cloudbees.groovy.cps.NonCPS
+//import com.cloudbees.groovy.cps.NonCPS
 
-@NonCPS
+//@NonCPS
 
-def findMatching(List arr, String regex) {
-
-    arr.findAll(it =~ /${regex}/)
-
-}
+//def findMatching(List arr, String regex) { //arr.findAll(it =~ /${regex}/) }
 
 node {
   try {
