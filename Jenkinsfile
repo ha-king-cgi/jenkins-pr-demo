@@ -26,9 +26,6 @@ node {
 
           println "Matching Stacks: ${stacks}"
 
-          println destroy_old_stacks
-          //sh destroy_old_stacks
-        
         if (!old_environments?.empty) {
           stage 'Destroy Old Stacks'
             println 'TODO: Tearing down old environments'
