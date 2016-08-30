@@ -35,30 +35,21 @@ node {
           String stacksList = stacks
           String delims = "[	]";
           String[] result = stacksList.split(delims);
-
-          //println stacksList
           
+          /*
           for (int x=0; x<result.length; x++) {
-          		    
-		    def temp = result[x].substring(0,10)
-		    //println temp
-		    
+		    def temp = result[x].substring(0,10)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
-		    
 		    if ( "${temp}"=="Jenkins-PR" ) {
 		        stage 'Destroy Old Stacks'
 		          println(result[x])
 		          println destroy_stacks
 		          sh destroy_stacks
-		          
 		          println "DESTROYED_STACK: '${result[x]}'"
-		          
-                currentBuild.result = 'SUCCESS'
-                
-		    } else {
-		      println "NO_STACKS_DESTROYED"
+                  currentBuild.result = 'SUCCESS'
 		    }
           }
+          */
           currentBuild.result = 'SUCCESS'
         
         stage 'Create Ephemeral Environment'
