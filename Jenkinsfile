@@ -41,7 +41,7 @@ node {
 		    def temp = result[x].substring(0,2)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 		    switch(result[x]) {
-			    case ~/^PR-[0-9]+/:
+			    case ["$temp"=="Jen"]:
 		          stage 'Scan All Stacks'
 		            println(result[x])
 		            println destroy_stacks
