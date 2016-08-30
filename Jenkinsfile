@@ -87,14 +87,13 @@ node {
 	        bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
 	        break
 	      case ['FAILURE']:
-	        buildResult = bitbucketStatusNotify ( buildState: 'FAILURE' )
+	        bitbucketStatusNotify ( buildState: 'FAILURE' )
 	        break
 	      default:
-	        buildResult = bitbucketStatusNotify ( buildState: 'UNSTABLE' )
+	        bitbucketStatusNotify ( buildState: 'UNSTABLE' )
 	        break
 	    }
 	    println "CURRENT_BUILD: ${currentBuild.result}"
-	    println "BUILD_RESULT: ${buildResult}"
 
   } catch(e) {
       println 'Build failed...'
