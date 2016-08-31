@@ -79,7 +79,13 @@ node {
           println "NOT A PULL REQUEST"
 		  println "CURRENT_BRANCH: ${env.BRANCH_NAME}"
     }
+    
     currentBuild.result = 'SUCCESS'
+    
+    def url = "http://bitbucket.org/api/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments"
+    def post = "curl -X POST -d '{"text":"BUILD_RESULT: ${currentBuild.result}"}' '${URL}'"
+    sh post
+    
     stage 'Notify bitbucket'
 	    println "Notify bitbucket with build status"
 	    println "RESULT: ${currentBuild.result}"
