@@ -46,7 +46,7 @@ node {
             sh "aws cloudformation update-stack --stack-name ${stack_name} --template-body file://cfnTemplate.json"
           }
 
-          if (matchingStacks.length == 0 ) {
+          if (matchingStacks.size() == 0 ) {
             stage 'Create Ephemeral Environment'
               println 'Deploy Ephemeral Stack'
 
