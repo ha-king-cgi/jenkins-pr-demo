@@ -29,7 +29,7 @@ node {
           String delims = "[	]";
           String[] result = stacksList.split(delims);
 
-          def matchingStacks = []
+          String[] matchingStacks = []
 
           for (int x=0; x<result.length; x++) {
             if ( result[x] =~ /Jenkins-${env.BRANCH_NAME}-[0-9]*-\w/ ) {
@@ -37,11 +37,11 @@ node {
                 matchingStacks << results[x]
             }
           }
-          if (matchingStacks.length > 1) {
+          if (matchingStacks.size() > 1) {
             throw("More than one matching stack found. Please cleanup manually")
           }
 
-          if (matchingStacks.length == 1) {
+          if (matchingStacks.size() == 1) {
             stage 'Update stack'
             sh "aws cloudformation update-stack --stack-name ${stack_name} --template-body file://cfnTemplate.json"
           }
