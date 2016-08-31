@@ -27,16 +27,12 @@ node {
           String stacksList = stacks
           String delims = "[	]";
           String[] result = stacksList.split(delims);
-          
-		  println "All STACKS W/ STATUS - CREATE_COMPLETE:"
-		  println stacksList
-                    
           for (int x=0; x<result.length; x++) {
 		    if ( result[x] =~ /Jenkins-${env.BRANCH_NAME}-[0-9]*-\w/ ) {
 	          stage 'Destroy Old Stacks'
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 	            println destroy_stacks
-	            //sh destroy_stacks
+	            sh destroy_stacks
 	            println "DESTROYED_STACK: '${result[x]}'"
 	            
 	            //mail body: 'Jenkins DESTROYED_STACK: "${result[x]}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DESTROYED_STACK: "${result[x]}"', to: 'ha.king@cgifederal.com'
@@ -63,7 +59,7 @@ node {
           def create_new_stack = "aws cloudformation create-stack --stack-name '${stack_name}' --tags '${tags}' --template-body file://${file}"
 
           println create_new_stack
-          //sh create_new_stack
+          sh create_new_stack
           
           //mail body: 'Jenkins DEPLOYED_STACK: "${stack_name}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DEPLOYED_STACK: "${stack_name}"', to: 'ha.king@cgifederal.com'
           
