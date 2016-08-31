@@ -30,15 +30,15 @@ node {
            script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
            returnStdout: true
           ).trim()
-
+          
           String stacksList = stacks
           String delims = "[	]";
           String[] result = stacksList.split(delims);
                     
           for (int x=0; x<result.length; x++) {
-		    def temp = result[x].substring(0,3)		    
+		    def temp = result[x].substring(0,4)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
-		    if ("$temp"=="Jen") {
+		    if ("$temp"=="Jenk") {
 	          stage 'Destroy Old Stacks'
 	            println(result[x])
 	            println destroy_stacks
@@ -63,10 +63,10 @@ node {
 
           def stack_name = "Jenkins-${env.BRANCH_NAME}-${build_time}-${author}"
           def tags = "Key=author,Value=${author}"
-          def file = 'Jenkins-Demo-PR.json'
+          def file = 'cfnTemplate.json'
           def create_new_stack = "aws cloudformation create-stack --stack-name '${stack_name}' --tags '${tags}' --template-body file://${file}"
 
-          println create_new_stack
+          //println create_new_stack
           sh create_new_stack
           
           currentBuild.result = 'SUCCESS'
@@ -96,7 +96,7 @@ node {
 	    println "CURRENT_BUILD: ${currentBuild.result}"
 
   } catch(e) {
-      println 'Build failed...'
+      println 'BUILD FAILED...'
       throw(e)
       bitbucketStatusNotify ( buildState: 'FAILURE' )
    }
