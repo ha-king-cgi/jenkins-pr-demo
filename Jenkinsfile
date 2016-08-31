@@ -45,7 +45,7 @@ node {
 
           if (matchingStacks.size() == 1) {
             stage 'Update stack'
-            println "Found matching stack!. Updating ${stack_name}..."
+            println "Found matching stack!. Updating ${matchingStacks[0]}..."
             def update_stack = "aws cloudformation update-stack --stack-name '${matchingStacks[0]}' --template-body file://cfnTemplate.json"
             sh update_stack
           }
