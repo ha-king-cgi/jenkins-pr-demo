@@ -98,5 +98,6 @@ node {
   } catch(e) {
       println 'Build failed...'
       throw(e)
+      bitbucketStatusNotify ( buildState: 'FAILURE' )
    }
 }
