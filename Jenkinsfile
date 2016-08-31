@@ -37,6 +37,7 @@ node {
               matchingStacks << result[x]
             }
           }
+          
           if (matchingStacks.size() > 1) {
             println "Whoops, you got some duplicates there!"
             throw("More than one matching stack found. Please cleanup manually.")
