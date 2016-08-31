@@ -75,7 +75,7 @@ node {
         stage "Abort build if not PR"
           println "NOT A PULL REQUEST"
 		  println "CURRENT_BRANCH: ${env.BRANCH_NAME}"
-		  currentBuild.result = 'FAILURE'
+		  currentBuild.result = 'SUCCESS'
 
     }
     stage 'Notify bitbucket'
