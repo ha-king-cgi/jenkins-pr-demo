@@ -83,8 +83,7 @@ node {
     currentBuild.result = 'SUCCESS'
     
     def url = "http://bitbucket.org/api/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments"
-    def post = "curl -X POST -d '{"text":"BUILD_RESULT: ${currentBuild.result}"}' '${URL}'"
-    sh post
+    sh 'curl -X POST -d \"{"text":"BUILD_RESULT"}\" http://bitbucket.org/api/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'
     
     stage 'Notify bitbucket'
 	    println "Notify bitbucket with build status"
