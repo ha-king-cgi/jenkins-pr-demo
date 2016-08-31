@@ -47,7 +47,8 @@ node {
 	            println destroy_stacks
 	            sh destroy_stacks
 	            println "DESTROYED_STACK: '${result[x]}'"
-	            mail body: 'Jenkins DESTROYED_STACK: "${result[x]}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DESTROYED_STACK: "${result[x]}"', to: 'ha.king@cgifederal.com'
+	            
+	            //mail body: 'Jenkins DESTROYED_STACK: "${result[x]}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DESTROYED_STACK: "${result[x]}"', to: 'ha.king@cgifederal.com'
 		    }
           }
           println "STACK SCAN COMPLETE"
@@ -73,7 +74,7 @@ node {
           //println create_new_stack
           sh create_new_stack
           
-          mail body: 'Jenkins DEPLOYED_STACK: "${stack_name}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DEPLOYED_STACK: "${stack_name}"', to: 'ha.king@cgifederal.com'
+          //mail body: 'Jenkins DEPLOYED_STACK: "${stack_name}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DEPLOYED_STACK: "${stack_name}"', to: 'ha.king@cgifederal.com'
           
           currentBuild.result = 'SUCCESS'
           
