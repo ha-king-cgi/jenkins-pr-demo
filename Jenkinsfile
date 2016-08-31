@@ -38,15 +38,18 @@ node {
             }
           }
           if (matchingStacks.size() > 1) {
+            println "Whoops, you got some duplicates there!"
             throw("More than one matching stack found. Please cleanup manually")
           }
 
           if (matchingStacks.size() == 1) {
             stage 'Update stack'
+            println "Found matching stack!. Updating ${stack_name}..."
             sh "aws cloudformation update-stack --stack-name ${stack_name} --template-body file://cfnTemplate.json"
           }
 
           if (matchingStacks.size() == 0 ) {
+            println "No matching stacks found. Creating one for you now..."
             stage 'Create Ephemeral Environment'
               println 'Deploy Ephemeral Stack'
 
