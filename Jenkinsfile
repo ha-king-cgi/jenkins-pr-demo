@@ -32,7 +32,7 @@ node {
 		  println stacksList
                     
           for (int x=0; x<result.length; x++) {
-		    if ( result[x] = ~/Jenkins-${env.BRANCH_NAME}-[0-9]*-\w/ ) {
+		    if ( result[x] =~ /Jenkins-${env.BRANCH_NAME}-[0-9]*-\w/ ) {
 	          stage 'Destroy Old Stacks'
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 	            println destroy_stacks
