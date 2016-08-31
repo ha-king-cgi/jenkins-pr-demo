@@ -34,7 +34,7 @@ node {
           for (int x=0; x<result.length; x++) {
             if ( result[x] =~ /Jenkins-${env.BRANCH_NAME}-[0-9]*-\w/ ) {
               println "Found old stack: ${result[x]}"
-              matchingStacks << results[x]
+              matchingStacks << result[x]
             }
           }
           if (matchingStacks.size() > 1) {
