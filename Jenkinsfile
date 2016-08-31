@@ -34,6 +34,9 @@ node {
           String stacksList = stacks
           String delims = "[	]";
           String[] result = stacksList.split(delims);
+          
+		  println "All STACKS W/ STATUS - CREATE_COMPLETE:"
+		  printLn stacksList
                     
           for (int x=0; x<result.length; x++) {
 		    def temp = result[x].substring(0,4)		    
