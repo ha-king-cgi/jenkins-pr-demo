@@ -18,7 +18,8 @@ node {
           println "Deploy to ${env.BRANCH_NAME}.."
 
       case ~/^PR-[0-9]+/:
-        stage 'Scan All Stacks'
+
+        stage 'Find Old Stacks'
           def stacks = sh (
            script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
            returnStdout: true
@@ -27,18 +28,18 @@ node {
           String stacksList = stacks
           String delims = "[	]";
           String[] result = stacksList.split(delims);
+
+        stage 'Destroy Old Stacks'
           for (int x=0; x<result.length; x++) {
-		    if ( result[x] =~ /Jenkins-${env.BRANCH_NAME}-[0-9]*-\w/ ) {
-	          stage 'Destroy Old Stacks'
-		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
-	            println destroy_stacks
-	            sh destroy_stacks
-	            println "DESTROYED_STACK: '${result[x]}'"
-	            
-	            //mail body: 'Jenkins DESTROYED_STACK: "${result[x]}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DESTROYED_STACK: "${result[x]}"', to: 'ha.king@cgifederal.com'
-		    }
+            println result[x]
+            if ( result[x] =~ /Jenkins-${env.BRANCH_NAME}-[0-9]*-\w/ ) {
+              println "Found old stack: ${result[x]}"
+                def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
+                println destroy_stacks
+                sh destroy_stacks
+                println "DESTROYED_STACK: '${result[x]}'"
+            }
           }
-          println "STACK SCAN COMPLETE"
                   
         stage 'Create Ephemeral Environment'
           println 'Deploy Ephemeral Stack'
@@ -60,8 +61,6 @@ node {
 
           println create_new_stack
           sh create_new_stack
-          
-          //mail body: 'Jenkins DEPLOYED_STACK: "${stack_name}"', cc: 'mohammadfaraaz.yarkhan@cgifederal.com', from: 'JENKINS-ETP-CLOUD', replyTo: 'noreply@cgifederal.com', subject: 'Jenkins DEPLOYED_STACK: "${stack_name}"', to: 'ha.king@cgifederal.com'
           
           currentBuild.result = 'SUCCESS'
           
