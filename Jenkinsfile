@@ -25,7 +25,7 @@ node {
           println "Deploy to ${env.BRANCH_NAME}.."
 
       case ~/^PR-[0-9]+/:
-        stage 'Find Old Stacks'
+        stage 'Scan All Stacks'
           def stacks = sh (
            script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
            returnStdout: true
@@ -39,7 +39,7 @@ node {
 		    def temp = result[x].substring(0,3)		    
 		    def destroy_stacks = "aws cloudformation delete-stack --stack-name '${result[x]}'"
 		    if ("$temp"=="Jen") {
-	          stage 'Scan All Stacks'
+	          stage 'Destroy Old Stacks'
 	            println(result[x])
 	            println destroy_stacks
 	            sh destroy_stacks
