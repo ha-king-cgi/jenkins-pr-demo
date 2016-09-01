@@ -45,7 +45,7 @@ node {
           if (matchingStacks.size() > 1) {
             println "Whoops, you got some duplicates there!"
             throw("More than one matching stack found. Please cleanup manually.")
-            def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
+            def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/${pr}/comments'"
 			  sh comment_post
           }
 
@@ -54,7 +54,7 @@ node {
             println "Found matching stack!. Updating ${matchingStacks[0]}..."
             def update_stack = "aws cloudformation update-stack --stack-name '${matchingStacks[0]}' --template-body file://cfnTemplate.json"
             sh update_stack
-            def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
+            def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/${pr}/comments'"
 			  sh comment_post
           }
 
@@ -81,7 +81,7 @@ node {
               println create_new_stack
               sh create_new_stack
               
-              def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins created Stack: ${stack_name}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
+              def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins created Stack: ${stack_name}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/${pr}/comments'"
 			  sh comment_post
           }
                   
