@@ -81,7 +81,7 @@ node {
     
     currentBuild.result = 'SUCCESS'
     
-    sh 'curl -v -X POST -u "ha-king:ETPa55word" -d "content=BUILD_RESULT: ${currentBuild.result}" "https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments"'
+    sh 'curl -v -X POST -u "ha-king:ETPa55word" -d "content=BUILD_RESULT: TESTING" "https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments"'
     
     stage 'Notify bitbucket'
 	    println "Notify bitbucket with build status"
