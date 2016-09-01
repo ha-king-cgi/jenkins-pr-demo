@@ -11,7 +11,6 @@ node {
     stage 'validate template'
       sh 'aws cloudformation validate-template --template-body file://cfnTemplate.json'
 
-
     switch(env.BRANCH_NAME) {
       case ['master', 'development', 'staging', 'production']:
         stage "Deploy to ${env.BRANCH_NAME}"
@@ -82,8 +81,7 @@ node {
     
     currentBuild.result = 'SUCCESS'
     
-    def url = "http://bitbucket.org/api/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments"
-    sh 'curl -X POST -d \"{"text":"BUILD_RESULT"}\" http://bitbucket.org/api/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'
+    sh 'curl -v -X POST -u "ha-king:ETPa55word" -d "content=BUILD_RESULT: ${currentBuild.result}" "https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments"'
     
     stage 'Notify bitbucket'
 	    println "Notify bitbucket with build status"
