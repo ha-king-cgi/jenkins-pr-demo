@@ -19,6 +19,10 @@ node {
       case ~/^PR-[0-9]+/:
 
         stage 'Find Old Stacks'
+          
+          def pr = "${env.BRANCH_NAME}".substring(4)
+          println "Pull Request #: ${pr}"
+          
           def stacks = sh (
            script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
            returnStdout: true
@@ -40,6 +44,8 @@ node {
           if (matchingStacks.size() > 1) {
             println "Whoops, you got some duplicates there!"
             throw("More than one matching stack found. Please cleanup manually.")
+            def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
+			  sh comment_post
           }
 
           if (matchingStacks.size() == 1) {
