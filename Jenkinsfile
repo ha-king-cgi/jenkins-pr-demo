@@ -46,7 +46,7 @@ node {
             stage 'Update stack'
             println "Found matching stack!. Updating ${matchingStacks[0]}..."
             def update_stack = "aws cloudformation update-stack --stack-name '${matchingStacks[0]}' --template-body file://cfnTemplate.json"
-            //sh update_stack
+            sh update_stack
             def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
 			  sh comment_post
           }
