@@ -20,7 +20,7 @@ node {
 
         stage 'Find Old Stacks'
           
-          def pr = env.BRANCH_NAME
+          def pr = env.BRANCH_NAME.substring(3)
           println "Pull Request #: "
           println "${pr}"
           
