@@ -22,7 +22,7 @@ node {
           
           def pr = env.BRANCH_NAME
           println "Pull Request #: "
-          println ${pr}
+          println "${pr}"
           
           def stacks = sh (
            script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
