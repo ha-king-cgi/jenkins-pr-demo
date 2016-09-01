@@ -47,6 +47,8 @@ node {
             println "Found matching stack!. Updating ${matchingStacks[0]}..."
             def update_stack = "aws cloudformation update-stack --stack-name '${matchingStacks[0]}' --template-body file://cfnTemplate.json"
             //sh update_stack
+            def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
+			  sh comment_post
           }
 
           if (matchingStacks.size() == 0 ) {
@@ -71,6 +73,9 @@ node {
 
               println create_new_stack
               sh create_new_stack
+              
+              def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins created Stack: ${stack_name}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
+			  sh comment_post
           }
                   
       default:
@@ -79,10 +84,7 @@ node {
 		  println "CURRENT_BRANCH: ${env.BRANCH_NAME}"
     }
     
-    currentBuild.result = 'SUCCESS'
-    
-    def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=BUILD_RESULT: ${currentBuild.result}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
-    sh comment_post
+    currentBuild.result = 'SUCCESS'    
     
     stage 'Notify bitbucket'
 	    println "Notify bitbucket with build status"
