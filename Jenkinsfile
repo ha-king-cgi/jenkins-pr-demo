@@ -81,7 +81,7 @@ node {
     
     currentBuild.result = 'SUCCESS'
     
-    def comment_post = 'curl -v -X POST -u "ha-king:ETPa55word" -d "content=BUILD_RESULT: ${currentBuild.result}" "https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments"'
+    def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=BUILD_RESULT: ${currentBuild.result}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/5/comments'"
     sh comment_post
     
     stage 'Notify bitbucket'
