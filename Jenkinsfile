@@ -14,7 +14,7 @@ node {
     switch(env.BRANCH_NAME) {
       case ['master', 'development', 'staging', 'production']:
         stage "Deploy to ${env.BRANCH_NAME}"
-          println "Deploy to ${env.BRANCH_NAME}.."
+          println "Deploy to ${env.BRANCH_NAME}..."
 
       case ~/^PR-[0-9]+/:
 
@@ -55,7 +55,7 @@ node {
             def update_stack = "aws cloudformation update-stack --stack-name '${matchingStacks[0]}' --template-body file://cfnTemplate.json"
             sh update_stack
             def comment_post = "curl -v -X POST -u 'ha-king:ETPa55word' -d 'content=Jenkins updated Stack: ${matchingStacks[0]}' 'https://api.bitbucket.org/1.0/repositories/ha-king/jenkins-pr-demo/pullrequests/${pr}/comments'"
-			  sh comment_post
+			sh comment_post
           }
 
           if (matchingStacks.size() == 0 ) {
