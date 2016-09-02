@@ -16,7 +16,7 @@
                                 {"Key": "Backup", "Value": "No"},
                                 {"Key": "Environment", "Value": "Dev"},
                                 {"Key": "Autostop", "Value": "Yes"},
-                                {"Key": "NewKey", "Value": "Testing2"}],
+                                {"Key": "NewKey", "Value": "Testing1"}],
                         "SubnetId": "subnet-a10dc3d7"
                 }
         }
