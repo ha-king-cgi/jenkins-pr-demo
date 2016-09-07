@@ -10,6 +10,7 @@ node {
    
     stage 'validate template'
       sh 'aws cloudformation validate-template --template-body file://cfnTemplate.json'
+      //comment test
 
     switch(env.BRANCH_NAME) {
       case ['master', 'development', 'staging', 'production']:
