@@ -1,7 +1,8 @@
 #!/usr/bin/env groovy
 node {
   try {
-  
+    
+    // Notify Bitbucket build has started
     bitbucketStatusNotify ( buildState: 'INPROGRESS' )
     
     stage 'checkout'
