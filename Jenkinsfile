@@ -22,8 +22,8 @@ node {
         stage 'Find Old Stacks'
           
           def pr = env.BRANCH_NAME.substring(3)
-          println "Pull Request #: "
-          println "${pr}"
+          //println "Pull Request #: "
+          //println "${pr}"
           
           def stacks = sh (
            script: "aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE --query 'StackSummaries[].StackName' --output text",
